@@ -1,0 +1,39 @@
+name: Build prototype
+on:
+  push:
+jobs:
+  build-prototype:
+    name: With .pnp.cjs in root
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: corepack enable
+
+      - run: npm i
+        working-directory: prototypes/esbuild-prototype
+      - run: npm run test:require-react
+        working-directory: prototypes/esbuild-prototype
+      - run: npm run build
+        working-directory: prototypes/esbuild-prototype
+
+  build-prototype-no-pnp:
+    name: Without .pnp.cjs in root
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: corepack enable
+
+      - run: rm .pnp.cjs
+
+      - run: npm i
+        working-directory: prototypes/esbuild-prototype
+      - run: npm run test:require-react
+        working-directory: prototypes/esbuild-prototype
+      - run: npm run build
+        working-directory: prototypes/esbuild-prototype

@@ -1,6 +1,7 @@
 {
   "name": "esbuild-prototype",
   "scripts": {
+    "test:require-react": "node -p 'require.resolve(\"react\")'",
     "build": "esbuild src/app.tsx --bundle --minify --sourcemap --outfile=public/bundle.js"
   },
   "dependencies": {
