@@ -1,0 +1,7 @@
+{
+  "name": "esbuild-yarn-demo",
+  "workspaces": [
+    "packages/*"
+  ],
+  "packageManager": "yarn@3.2.3"
+}
